@@ -3,6 +3,7 @@ import { goodbye } from './utils/goodbye.js';
 import * as readline from 'readline';
 import { getCurrentUserName } from './utils/getCurrentUserName.js';
 import { getCurrentCommand } from './utils/getCurrentCommand.js';
+import { selectOSParam } from './systemInfoOperations/OSSettings.js';
 
 const rl = readline.createInterface({
   input: process.stdin
@@ -62,7 +63,12 @@ export const startApp = async () => {
       case 'decompress': {
         console.log('decompress');
         break;
-      } default: {
+      }
+      case 'os': {
+        selectOSParam(input);
+        break;
+      } 
+      default: {
         console.log('Invalid input');
       }
     }
