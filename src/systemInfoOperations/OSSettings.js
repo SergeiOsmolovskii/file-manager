@@ -1,11 +1,12 @@
 import { getCPU } from './getCPU.js';
 import { getCurrentUserName } from './getUserName.js';
+import { getEOL } from './getEOL.js';
 
 export const selectOSParam = async (param) => {
   const command = await getSelectedParams(param);
   switch (command) {
     case '--EOL': {
-      console.log('--EOL');
+      getEOL();
       break;
     }
     case '--cpus': {
