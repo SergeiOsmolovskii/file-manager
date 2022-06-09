@@ -4,16 +4,19 @@ import * as readline from 'readline';
 import { getCurrentUserName } from './utils/getCurrentUserName.js';
 import { getCurrentCommand } from './utils/getCurrentCommand.js';
 import { selectOSParam } from './systemInfoOperations/OSSettings.js';
+import { getPath } from './utils/getPath.js';
 
 const rl = readline.createInterface({
   input: process.stdin
 });
 
 export const startApp = async () => {
-  const userName = await getCurrentUserName(); 
+  const userName = await getCurrentUserName();
+  const currentPath = await getPath(import.meta.url, '');
   await welcome(userName);
-
+  console.log(`You are currently in ${currentPath}`);
   rl.on('line', async (input) => {
+    console.log(`You are currently in ${currentPath}`);
     let command = await getCurrentCommand(input);
     switch (command) {
       case 'exit': {
