@@ -1,12 +1,13 @@
 import { getCPU } from './getCPU.js';
 import { getCurrentUserName } from './getUserName.js';
 import { getEOL } from './getEOL.js';
+import { getHomeDir } from './getHomeDir.js';
 
 export const selectOSParam = async (param) => {
   const command = await getSelectedParams(param);
   switch (command) {
     case '--EOL': {
-      getEOL();
+      await getEOL();
       break;
     }
     case '--cpus': {
@@ -14,7 +15,7 @@ export const selectOSParam = async (param) => {
       break;
     }
     case '--homedir': {
-      console.log('--homedir');
+      getHomeDir();  
       break;
     }
     case '--username': {
