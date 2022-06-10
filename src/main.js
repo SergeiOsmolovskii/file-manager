@@ -7,6 +7,7 @@ import { selectOSParam } from './systemInfoOperations/OSSettings.js';
 import { getPath } from './utils/getPath.js';
 import { up } from './listOfOperations/up.js';
 import { ls } from './listOfOperations/ls.js';
+import { cd } from './listOfOperations/cd.js';
 
 const rl = readline.createInterface({
   input: process.stdin
@@ -29,7 +30,12 @@ export const startApp = async () => {
         break;
       }
       case 'cd': {
-        console.log('cd');
+        let params = input.trim().split(' ');
+        if (params.length > 2) {
+          console.log('Invalid input');
+        } else {
+          currentPath = await cd(currentPath, params[1]);
+        }
         break;
       }
       case 'ls': {
