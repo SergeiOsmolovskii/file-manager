@@ -5,6 +5,7 @@ import { getCurrentUserName } from './utils/getCurrentUserName.js';
 import { getCurrentCommand } from './utils/getCurrentCommand.js';
 import { selectOSParam } from './systemInfoOperations/OSSettings.js';
 import { getPath } from './utils/getPath.js';
+import { up } from './listOfOperations/up.js';
 
 const rl = readline.createInterface({
   input: process.stdin
@@ -12,18 +13,18 @@ const rl = readline.createInterface({
 
 export const startApp = async () => {
   const userName = await getCurrentUserName();
-  const currentPath = await getPath(import.meta.url, '');
+  let currentPath = await getPath(import.meta.url, '');
   await welcome(userName);
   console.log(`You are currently in ${currentPath}`);
   rl.on('line', async (input) => {
-    console.log(`You are currently in ${currentPath}`);
     let command = await getCurrentCommand(input);
     switch (command) {
-      case 'exit': {
-        console.log('exit');
-        break;
+      case '.exit': {
+        goodbye(userName);
+        process.exit();
       }
       case 'up': {
+        currentPath = await up(currentPath);
         console.log('up');
         break;
       }
@@ -68,13 +69,14 @@ export const startApp = async () => {
         break;
       }
       case 'os': {
-        selectOSParam(input);
+        await selectOSParam(input);
         break;
       } 
       default: {
         console.log('Invalid input');
       }
     }
+    console.log(`\nYou are currently in ${currentPath}`);
   });
 
   process.on('SIGINT', () => {
