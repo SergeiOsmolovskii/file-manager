@@ -6,6 +6,7 @@ import { getCurrentCommand } from './utils/getCurrentCommand.js';
 import { selectOSParam } from './systemInfoOperations/OSSettings.js';
 import { getPath } from './utils/getPath.js';
 import { up } from './listOfOperations/up.js';
+import { ls } from './listOfOperations/ls.js';
 
 const rl = readline.createInterface({
   input: process.stdin
@@ -25,7 +26,6 @@ export const startApp = async () => {
       }
       case 'up': {
         currentPath = await up(currentPath);
-        console.log('up');
         break;
       }
       case 'cd': {
@@ -33,7 +33,7 @@ export const startApp = async () => {
         break;
       }
       case 'ls': {
-        console.log('ls');
+        ls(currentPath);
         break;
       }
       case 'cat': {
