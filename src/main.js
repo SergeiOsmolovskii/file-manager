@@ -1,6 +1,8 @@
 import { welcome } from './utils/welcome.js';
 import { goodbye } from './utils/goodbye.js';
 import * as readline from 'readline';
+import path from 'path';
+
 import { getCurrentUserName } from './utils/getCurrentUserName.js';
 import { getCurrentCommand } from './utils/getCurrentCommand.js';
 import { selectOSParam } from './systemInfoOperations/OSSettings.js';
@@ -8,6 +10,8 @@ import { getPath } from './utils/getPath.js';
 import { up } from './listOfOperations/up.js';
 import { ls } from './listOfOperations/ls.js';
 import { cd } from './listOfOperations/cd.js';
+import { getHomeDir } from './systemInfoOperations/getHomeDir.js';
+
 
 const rl = readline.createInterface({
   input: process.stdin
@@ -15,7 +19,7 @@ const rl = readline.createInterface({
 
 export const startApp = async () => {
   const userName = await getCurrentUserName();
-  let currentPath = await getPath(import.meta.url, '');
+  let currentPath = await getHomeDir();
   await welcome(userName);
   console.log(`You are currently in ${currentPath}`);
   rl.on('line', async (input) => {

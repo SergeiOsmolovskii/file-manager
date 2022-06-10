@@ -16,7 +16,8 @@ export const selectOSParam = async (param) => {
       break;
     }
     case '--homedir': {
-      getHomeDir();  
+      const homeDir = await getHomeDir();
+      console.log(`Home dir: ${homeDir}`);  
       break;
     }
     case '--username': {
