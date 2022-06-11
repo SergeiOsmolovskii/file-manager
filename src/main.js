@@ -7,6 +7,7 @@ import { selectOSParam } from './systemInfoOperations/OSSettings.js';
 import { up } from './listOfOperations/up.js';
 import { ls } from './listOfOperations/ls.js';
 import { cd } from './listOfOperations/cd.js';
+import { cat } from './filesOperations/cat.js';
 import { getHomeDir } from './systemInfoOperations/getHomeDir.js';
 
 
@@ -39,7 +40,7 @@ export const startApp = async () => {
         break;
       }
       case 'cat': {
-        console.log('cat');
+        await cat(input.trim(), currentPath);
         break;
       }
       case 'rn': {
