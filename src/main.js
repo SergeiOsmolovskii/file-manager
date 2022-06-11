@@ -10,6 +10,8 @@ import { cd } from './listOfOperations/cd.js';
 import { cat } from './filesOperations/cat.js';
 import { add } from './filesOperations/add.js';
 import { rn } from './filesOperations/rn.js';
+import { rm } from './filesOperations/rm.js';
+
 import { getHomeDir } from './systemInfoOperations/getHomeDir.js';
 
 
@@ -62,7 +64,7 @@ export const startApp = async () => {
         break;
       }
       case 'rm': {
-        console.log('rm');
+        await rm(input.trim(), currentPath);
         break;
       }
       case 'hash': {
