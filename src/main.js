@@ -1,12 +1,9 @@
+import * as readline from 'readline';
 import { welcome } from './utils/welcome.js';
 import { goodbye } from './utils/goodbye.js';
-import * as readline from 'readline';
-import path from 'path';
-
 import { getCurrentUserName } from './utils/getCurrentUserName.js';
 import { getCurrentCommand } from './utils/getCurrentCommand.js';
 import { selectOSParam } from './systemInfoOperations/OSSettings.js';
-import { getPath } from './utils/getPath.js';
 import { up } from './listOfOperations/up.js';
 import { ls } from './listOfOperations/ls.js';
 import { cd } from './listOfOperations/cd.js';
@@ -34,12 +31,7 @@ export const startApp = async () => {
         break;
       }
       case 'cd': {
-        let params = input.trim().split(' ');
-        if (params.length > 2) {
-          console.log('Invalid input');
-        } else {
-          currentPath = await cd(currentPath, params[1]);
-        }
+        currentPath = await cd(input.trim(), currentPath);
         break;
       }
       case 'ls': {
