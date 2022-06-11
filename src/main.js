@@ -8,6 +8,7 @@ import { up } from './listOfOperations/up.js';
 import { ls } from './listOfOperations/ls.js';
 import { cd } from './listOfOperations/cd.js';
 import { cat } from './filesOperations/cat.js';
+import { add } from './filesOperations/add.js';
 import { getHomeDir } from './systemInfoOperations/getHomeDir.js';
 
 
@@ -37,6 +38,10 @@ export const startApp = async () => {
       }
       case 'ls': {
         ls(currentPath);
+        break;
+      }
+      case 'add': {
+        await add(input.trim(), currentPath);
         break;
       }
       case 'cat': {
