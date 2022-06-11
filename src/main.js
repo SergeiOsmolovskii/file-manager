@@ -9,6 +9,7 @@ import { ls } from './listOfOperations/ls.js';
 import { cd } from './listOfOperations/cd.js';
 import { cat } from './filesOperations/cat.js';
 import { add } from './filesOperations/add.js';
+import { rn } from './filesOperations/rn.js';
 import { getHomeDir } from './systemInfoOperations/getHomeDir.js';
 
 
@@ -49,7 +50,7 @@ export const startApp = async () => {
         break;
       }
       case 'rn': {
-        console.log('rn');
+        await rn(input.trim(), currentPath);
         break;
       }
       case 'cp': {
