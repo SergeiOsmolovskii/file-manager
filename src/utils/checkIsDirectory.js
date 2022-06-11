@@ -1,10 +1,10 @@
 import fs from 'fs';
 
-export const checkIsFile = async (path) => {
+export const checkIsDirectory = async (path) => {
   
   try {
     const stat = await fs.promises.lstat(path);
-    return stat.isFile(); 
+    return stat.isDirectory();
   }
   catch (err) {
     console.log('Operation failed');
