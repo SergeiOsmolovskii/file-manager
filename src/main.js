@@ -15,6 +15,7 @@ import { cp } from  './filesOperations/cp.js';
 import { mv } from './filesOperations/mv.js';
 import { hash } from './hashOperations/hash.js';
 import { compress } from './compressAndDecompressOperations/compress.js';
+import { decompress } from './compressAndDecompressOperations/decompress.js';
 
 import { getHomeDir } from './systemInfoOperations/getHomeDir.js';
 
@@ -80,7 +81,7 @@ export const startApp = async () => {
         break;
       }
       case 'decompress': {
-        console.log('decompress');
+        await decompress(input.trim(), currentPath);
         break;
       }
       case 'os': {
