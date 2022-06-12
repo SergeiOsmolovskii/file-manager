@@ -6,7 +6,7 @@ import { checkIsFile } from '../utils/checkIsFile.js';
 export const cd = async (command, currentPath) => {
   try {
     const params = command.trim().split('cd ')[1];
-    const newPath = path.join(currentPath, params);
+    const newPath = path.isAbsolute(params) ? params : path.join(currentPath, params);
 
     if (params === '..') {
       return up(currentPath);

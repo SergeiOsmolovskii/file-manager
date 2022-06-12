@@ -5,7 +5,7 @@ import fs from 'fs';
 export const hash = async (command, currentPath) => {
   try {
     const fileName = command.trim().split('hash ')[1];
-    const filePath = path.join(currentPath, fileName);
+    const filePath = path.isAbsolute(fileName) ? fileName : path.join(currentPath, fileName);
     const hash = crypto.createHash('sha256');
     let data = [];
     const readStream = fs.createReadStream(filePath);

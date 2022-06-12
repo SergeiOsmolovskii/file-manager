@@ -8,9 +8,9 @@ export const mv = async (command, currentPath) => {
     const params = command.trim().split('mv ')[1];
     const fileToCopy = params.split(' ')[0];
     const directoryToCopy = params.split(' ')[1];
-    const fileToCopyPath = path.join(currentPath, fileToCopy);
-    const directoryToCopyPath = path.join(currentPath, directoryToCopy);
-    const newFilePath = path.join(directoryToCopyPath, fileToCopy);
+    const fileToCopyPath = path.isAbsolute(fileToCopy) ? fileToCopy : path.join(currentPath, fileToCopy);
+    const directoryToCopyPath = path.isAbsolute(directoryToCopy) ? directoryToCopy : path.join(currentPath, directoryToCopy);
+    const newFilePath = !path.isAbsolute(fileToCopy) ? path.join(directoryToCopyPath, fileToCopy) : path.join(directoryToCopyPath, path.basename(fileToCopy));
     const isFile = await checkIsFile(fileToCopyPath);
     const isDirectory = await checkIsDirectory(directoryToCopyPath);
 

@@ -9,9 +9,11 @@ export const compress = async (command, currentPath) => {
     const params = command.trim().split('compress ')[1];
     const fileToCompress = params.split(' ')[0];
     const directoryToCompress = params.split(' ')[1];
-    const fileToCompressPath = path.join(currentPath, fileToCompress);
-    const directoryToCompressPath = path.join(currentPath, directoryToCompress);
-    const compressedFilePath = path.join(directoryToCompressPath, fileToCompress + '.br');
+    const fileToCompressPath = path.isAbsolute(fileToCompress) ? fileToCompress : path.join(currentPath, fileToCompress);
+    const directoryToCompressPath = path.isAbsolute(directoryToCompress) ? directoryToCompress : path.join(currentPath, directoryToCompress);
+    const fileName = path.isAbsolute(fileToCompress) ? path.basename(fileToCompress) : fileToCompress;
+    const compressedFilePath = path.join(directoryToCompressPath, fileName + '.br');
+  
     const isFile = await checkIsFile(fileToCompressPath);
     const isDirectory = await checkIsDirectory(directoryToCompressPath);
 

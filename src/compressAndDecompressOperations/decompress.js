@@ -9,11 +9,12 @@ export const decompress = async (command, currentPath) => {
     const params = command.trim().split('compress ')[1];
     const fileToDecompress = params.split(' ')[0];
     const directoryToDecompress = params.split(' ')[1];
-    const fileToDecompressPath = path.join(currentPath, fileToDecompress);
-    const directoryToDeompressPath = path.join(currentPath, directoryToDecompress);
-    const decompressedFilePath = path.join(directoryToDeompressPath, fileToDecompress.slice(0, -3));
+    const fileToDecompressPath = path.isAbsolute(fileToDecompress) ? fileToDecompress : path.join(currentPath, fileToDecompress);
+    const directoryToDecompressPath = path.isAbsolute(directoryToDecompress) ? directoryToDecompress : path.join(currentPath, directoryToDecompress);
+    const fileName = path.isAbsolute(fileToDecompress) ? path.basename(fileToDecompress) : fileToDecompress;
+    const decompressedFilePath = path.join(directoryToDecompressPath, fileName.slice(0, -3));
     const isFile = await checkIsFile(fileToDecompressPath);
-    const isDirectory = await checkIsDirectory(directoryToDeompressPath);
+    const isDirectory = await checkIsDirectory(directoryToDecompressPath);
 
     if (isFile && isDirectory) {
       const readStream = fs.createReadStream(fileToDecompressPath);

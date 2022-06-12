@@ -4,10 +4,10 @@ import path from 'path';
 export const rm = async (command, currentPath) => {
   try {
     const fileName = command.trim().split('rm ')[1];
-    const filePath = path.join(currentPath, fileName);
+    const filePath = path.isAbsolute(fileName) ? fileName : path.join(currentPath, fileName);
 
     fs.promises.unlink(filePath).then(() => {
-      console.log(`File ${fileName} deleted`);
+      console.log(`File ${path.basename(filePath)} deleted`);
     }).catch(() => {
       console.log('\nOperation failed');
     });
