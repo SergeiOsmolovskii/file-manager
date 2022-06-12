@@ -14,6 +14,7 @@ import { rm } from './filesOperations/rm.js';
 import { cp } from  './filesOperations/cp.js';
 import { mv } from './filesOperations/mv.js';
 import { hash } from './hashOperations/hash.js';
+import { compress } from './compressAndDecompressOperations/compress.js';
 
 import { getHomeDir } from './systemInfoOperations/getHomeDir.js';
 
@@ -75,7 +76,7 @@ export const startApp = async () => {
         break;
       }
       case 'compress': {
-        console.log('compress');
+        await compress(input.trim(), currentPath);
         break;
       }
       case 'decompress': {
