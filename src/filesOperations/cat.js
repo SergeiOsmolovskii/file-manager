@@ -1,28 +1,30 @@
 import fs from 'fs';
 import path from 'path';
 import { checkIsFile } from '../utils/checkIsFile.js';
-
 export const cat = async (command, currentPath) => {
-  const params = command.trim().split('cat ')[1];
-  const filePath = path.join(currentPath, params);
+  try {
+    const params = command.trim().split('cat ')[1];
+    const filePath = path.join(currentPath, params);
+    const readStream = fs.createReadStream(filePath);
 
-  return await fs.promises.access(filePath).then(async () => {
-    
-    if (await checkIsFile(filePath)) {
-      let data = [];
-      const readStream = fs.createReadStream(filePath);
-  
-      readStream.on('data', (chunk) => {
-        data.push(chunk.toString());
-      });
-  
-      readStream.on('end', () => {
-        console.log(data.join(''));
-      });
-    } else {
-      console.log('Invalid path');
+    return await fs.promises.access(filePath).then(async () => {
+        if (await checkIsFile(filePath)) {
+          let data = [];
+
+          readStream.on('data', (chunk) => {
+            data.push(chunk.toString());
+          });
+
+          readStream.on('end', () => {
+            console.log(data.join(''));
+          });
+
+        } else {
+          console.log('\nOperation failed');
+        } 
+      })
     }
-  }).catch(() => {
-    console.log('Invalid path');
-  });
-}
+    catch (e) {
+      console.log('\nOperation failed');
+    }
+  }

@@ -29,7 +29,7 @@ export const selectOSParam = async (param) => {
       break;
     }
     default: {
-      console.log('Invalid input');
+      console.log('\nInvalid input');
     }
   }
 }

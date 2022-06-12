@@ -5,7 +5,6 @@ import { checkIsDirectory } from '../utils/checkIsDirectory.js';
 import { checkIsFile } from '../utils/checkIsFile.js';
 
 export const decompress = async (command, currentPath) => {
-
   try {
     const params = command.trim().split('compress ')[1];
     const fileToDecompress = params.split(' ')[0];
