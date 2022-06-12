@@ -24,13 +24,16 @@ export const decompress = async (command, currentPath) => {
 
       stream.on('finish', () => {
         console.log(`File ${fileToDecompress} decompressed into ${decompressedFilePath}`);
+        console.log(`\nYou are currently in ${currentPath}\n`);
       });
 
       stream.on('error', () => {
         console.log('Operation failed');
+        console.log(`\nYou are currently in ${currentPath}\n`);
       });
     }
   } catch (e) {
     console.log('Operation failed');
+    console.log(`\nYou are currently in ${currentPath}\n`);
   }
 }

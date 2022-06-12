@@ -15,14 +15,24 @@ export const cd = async (command, currentPath) => {
     return await fs.promises.access(newPath).then(async () => {
       if (newPath) {
         let isFile = await checkIsFile(newPath);
-        return isFile ? currentPath : newPath;
+        if (isFile) {
+          currentPath = currentPath;
+          console.log(`\nYou are currently in ${currentPath}\n`);
+          return currentPath;
+        } else {
+          currentPath = newPath;
+          console.log(`\nYou are currently in ${currentPath}\n`);
+          return currentPath;
+        }
       }
     }).catch(() => {
-      console.log('Invalid path');
+      console.log('\nInvalid path');
+      console.log(`\nYou are currently in ${currentPath}\n`);
       return currentPath;
     });
   } catch (e) {
-    console.log('Invalid path');
+    console.log('\nInvalid path');
+    console.log(`\nYou are currently in ${currentPath}\n`);
     return currentPath;
   };
 }

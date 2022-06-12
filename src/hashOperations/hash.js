@@ -18,13 +18,16 @@ export const hash = async (command, currentPath) => {
       hash.update(data.join(''));
       const fileHash = hash.digest('hex');
       console.log(fileHash);
+      console.log(`\nYou are currently in ${currentPath}\n`);
     });
 
     readStream.on('error', () => {
       console.log('Operation failed');
+      console.log(`\nYou are currently in ${currentPath}\n`);
     });
 
   } catch (e) {
     console.log('Operation failed');
+    console.log(`\nYou are currently in ${currentPath}\n`);
   }
 }

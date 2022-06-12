@@ -8,11 +8,14 @@ export const rm = async (command, currentPath) => {
 
     fs.promises.unlink(filePath).then(() => {
       console.log(`File ${path.basename(filePath)} deleted`);
+      console.log(`\nYou are currently in ${currentPath}\n`);
     }).catch(() => {
       console.log('\nOperation failed');
+      console.log(`\nYou are currently in ${currentPath}\n`);
     });
 
   } catch (e) {
     console.log('\nOperation failed');
+    console.log(`\nYou are currently in ${currentPath}\n`);
   }
 }

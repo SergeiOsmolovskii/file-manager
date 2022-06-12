@@ -10,15 +10,18 @@ export const add = async (command, currentPath) => {
 
     writeStream.on('close', () => {
       console.log(`File ${fileName} created`);
+      console.log(`\nYou are currently in ${currentPath}\n`);
     });
 
     writeStream.on('error', () => {
       console.log('\nOperation failed');
+      console.log(`\nYou are currently in ${currentPath}\n`);
     });
 
     writeStream.close();
 
   } catch (e) {
     console.log('\nOperation failed');
+    console.log(`\nYou are currently in ${currentPath}\n`);
   }
 }

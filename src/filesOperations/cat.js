@@ -19,6 +19,7 @@ export const cat = async (command, currentPath) => {
 
           readStream.on('end', () => {
             console.log(data.join(''));
+            console.log(`\nYou are currently in ${currentPath}\n`);
           });
 
           readStream.on('error', () => {

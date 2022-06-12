@@ -25,13 +25,16 @@ export const compress = async (command, currentPath) => {
 
       stream.on('finish', () => {
         console.log(`File ${fileToCompress} compressed into ${compressedFilePath}`);
+        console.log(`\nYou are currently in ${currentPath}\n`);
       });
 
       stream.on('error', () => {
         console.log('Operation failed');
+        console.log(`\nYou are currently in ${currentPath}\n`);
       });
     }
   } catch (e) {
     console.log('Operation failed');
+    console.log(`\nYou are currently in ${currentPath}\n`);
   }
 }

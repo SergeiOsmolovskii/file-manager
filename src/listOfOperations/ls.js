@@ -7,4 +7,5 @@ export const ls = async (currentPath) => {
     itemsArray.push(item.name);
   }
   console.log(itemsArray);
+  console.log(`\nYou are currently in ${currentPath}\n`);
 }

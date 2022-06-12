@@ -31,7 +31,7 @@ export const startApp = async () => {
   console.log(`You are currently in ${currentPath}`);
   rl.on('line', async (input) => {
     let command = await getCurrentCommand(input);
-    
+
     switch (command) {
       case '.exit': {
         goodbye(userName);
@@ -86,14 +86,14 @@ export const startApp = async () => {
         break;
       }
       case 'os': {
-        await selectOSParam(input);
+        await selectOSParam(input, currentPath);
         break;
       } 
       default: {
         console.log('\nInvalid input');
+        console.log(`\nYou are currently in ${currentPath}\n`);
       }
     }
-    console.log(`\nYou are currently in ${currentPath}\n`);
   });
 
   process.on('SIGINT', () => {

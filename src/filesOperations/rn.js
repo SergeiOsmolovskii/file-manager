@@ -11,10 +11,13 @@ export const rn = async (command, currentPath) => {
 
     fs.promises.rename(oldFilePath, newFilePath).then(() => {
       console.log(`File ${path.basename(oldFileName)} renamed to ${newFileName}`);
+      console.log(`\nYou are currently in ${currentPath}\n`);
     }).catch(() => {
       console.log('\nOperation failed');
+      console.log(`\nYou are currently in ${currentPath}\n`);
     });
   } catch (e) {
     console.log('\nOperation failed');
+    console.log(`\nYou are currently in ${currentPath}\n`);
   }
 }

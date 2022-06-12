@@ -23,8 +23,10 @@ export const mv = async (command, currentPath) => {
 
         fs.promises.unlink(fileToCopyPath).then(() => {
           console.log(`Base file deleted`);
+          console.log(`\nYou are currently in ${currentPath}\n`);
         }).catch(() => {
           console.log('\nOperation failed');
+          console.log(`\nYou are currently in ${currentPath}\n`);
         });
       });
     }

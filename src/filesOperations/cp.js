@@ -20,9 +20,11 @@ export const cp = async (command, currentPath) => {
 
       readStream.pipe(writeStream).on('close', () => {
         console.log('File copied');
+        console.log(`\nYou are currently in ${currentPath}\n`);
       });
     }
   } catch (e) {
     console.log('\nOperation failed');
+    console.log(`\nYou are currently in ${currentPath}\n`);
   }
 }
