@@ -7,6 +7,6 @@ export const getCPU = async () => {
   console.log(`CPU model: ${cpusModel}`);
   console.log(os.cpus().map(cpu => ({
     model: cpu.model,
-    speed: cpu.speed,
+    speed: cpu.speed > 1000 ? cpu.speed / 1000 + ' GHz' : cpu.speed / 10 + ' GHz'
   })));
 }
