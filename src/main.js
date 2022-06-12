@@ -13,6 +13,7 @@ import { rn } from './filesOperations/rn.js';
 import { rm } from './filesOperations/rm.js';
 import { cp } from  './filesOperations/cp.js';
 import { mv } from './filesOperations/mv.js';
+import { hash } from './hashOperations/hash.js';
 
 import { getHomeDir } from './systemInfoOperations/getHomeDir.js';
 
@@ -70,7 +71,7 @@ export const startApp = async () => {
         break;
       }
       case 'hash': {
-        console.log('hash');
+        await hash(input.trim(), currentPath);
         break;
       }
       case 'compress': {
